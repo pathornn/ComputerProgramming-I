@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <limits.h>
 
 int main(){
     int n;
@@ -12,15 +13,15 @@ int main(){
 
     int output[50001][2], count=0;                  // array 0 เก็บเลข, array 1 เก็บความถี่
     for(int i=0; i<n; i++){
-        output[i][1] = 0;
+        output[i][1] = INT_MIN;
     }
 
     for(int i=0; i<n; i++){
         for(int ii=0; ii<n; ii++){
-            if(num[i] == num[ii] && num[i] != 0){   //ถ้าเจอจำนวนซ้ำ และจำนวนนั้นไม่เป็น 0
+            if(num[i] == num[ii] && num[i] != INT_MIN){   //ถ้าเจอจำนวนซ้ำ และจำนวนนั้นไม่เป็น 0
                 output[i][0] = num[i];
                 if(count > 0){                      //ถ้านับจำนวนแรกแล้ว จำนวนที่ซ้ำกันหลังจากนั้นให้เป็น 0
-                    num[ii] = 0;
+                    num[ii] = INT_MIN;
                 }
                 count++;                            //นับความถี่
             }
